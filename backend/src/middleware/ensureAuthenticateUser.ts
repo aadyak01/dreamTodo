@@ -10,7 +10,7 @@ interface IpayLoad{
 export default function ensureAuthenticareUser(request: Request, response: Response, next: NextFunction){
 
   const authHeader = request.headers.authorization
-
+ //add a check for the presence of the authorization header
   if(!authHeader){
     throw new AppError("Token não valido ou faltando.", 401)
   }
