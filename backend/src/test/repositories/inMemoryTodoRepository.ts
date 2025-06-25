@@ -49,10 +49,11 @@ export class InMemoryTodoRepository implements TodoRepository {
 
   listTodoDate: (id_collection: string, modo: string) => Promise<Todo[]>
 
-  async findTodoByTitle(title: string) {
-    const todo = this.todos.find(todo => todo.title === title)
-    return todo ?? null
-  }
+
+ async findTodoByTitle(title: string): Promise<Todo | null> {
+   return this.todos.find(todo => todo.title === title) ?? null
+ }
+
 
   async findTodoById(id: string) {
     const todo = this.todos.find(todo => todo.id === id)
