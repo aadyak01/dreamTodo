@@ -31,11 +31,11 @@ export class InMemoryCollectionRepository implements CollectionRepository {
     this.colletions.filter(colletion => colletion.id !== id)
   }
 
-  async editColletion({ id, emoji, name }: IEditCollection) {
+  async editCollection({ id, emoji, name }: IEditCollection) {
     const collection = await this.findCollectionById(id)
 
     if (!collection) {
-      throw new AppError('Error')
+      throw new AppError('Collection not found')
     }
 
     collection.emoji = emoji ?? collection.emoji
