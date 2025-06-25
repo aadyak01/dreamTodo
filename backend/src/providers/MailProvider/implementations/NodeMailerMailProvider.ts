@@ -23,7 +23,7 @@ export class NodeMailerMailProvider implements MailProvider {
   }
 
   async sendMail({ to, subject, content }: MailType) {
-    this.client.sendMail({
+    await this.client.sendMail({
       from: 'DreamTodo <noreplay@dreamtodo.com.br>',
       to,
       subject,
