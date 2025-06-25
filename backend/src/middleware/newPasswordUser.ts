@@ -10,8 +10,8 @@ type PayLoad = {
 export default async function newPasswordUser(request: Request, response: Response, next: NextFunction) {
   const authHeader = request.headers.authorization
 
-  if(!authHeader){
-    throw new AppError("Token não valido ou faltando.", 401)
+  if (!authHeader) {
+    throw new AppError("Token is invalid or missing.", 401);
   }
 
   const [, token] = authHeader.split(" ")
