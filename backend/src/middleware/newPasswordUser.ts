@@ -18,18 +18,18 @@ export default async function newPasswordUser(request: Request, response: Respon
 
   const [, token] = authHeader.split(" ")
 
-  try {
-    const { sub: id } = verify(
-      token,
-      String(process.env.NEW_PASS_SECRET)
-    ) as PayLoad
+ try {
+   const decoded = verify(
+     token,
+     String(process.env.NEW_PASS_SECRET)
+   ) as PayLoad;
 
-    request.user = {
-      id
-    }
+   request.user = {
+     id: decoded.sub
+   };
 
-    next()
-  } catch {
-    throw new AppError("Token invalido", 401)
-  }
+   next();
+ } catch (error) {
+   throw new AppError("Token is invalid", 401);
+ }
 }
