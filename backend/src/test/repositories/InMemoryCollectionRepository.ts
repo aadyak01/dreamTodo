@@ -14,15 +14,18 @@ export class InMemoryCollectionRepository implements CollectionRepository {
   listTodoOfColletion: (name: string, complete: string) => Promise<any>
   colletions: Collection[] = []
 
-  async createCollection(data: RequestCreateColletion) {
-    Object.assign(data, {
-      id: v4()
-    })
+ async createCollection(data: RequestCreateColletion) {
+   const collection: Collection = {
+     ...data,
+     id: v4(),
+     createdAt: new Date(),
+     updatedAt: new Date(),
+   }
 
-    this.colletions.push(data as Collection)
+   this.colletions.push(collection)
 
-    return data as Collection
-  }
+   return collection
+ }
 
   async deleteColletion(id: string) {
     this.colletions.filter(colletion => colletion.id !== id)
